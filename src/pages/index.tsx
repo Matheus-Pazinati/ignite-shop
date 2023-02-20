@@ -1,5 +1,12 @@
+import { styled } from "@/styles"
+
+const Title = styled('h1', {
+  color: '$gray400',
+  fontWeight: 'bold'
+})
+
 export default function Home() {
   return (
-    <h1>Ignite Shop</h1>
+    <Title>Ignite Shop</Title>
   )
 }
