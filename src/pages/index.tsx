@@ -1,7 +1,7 @@
 import { styled } from "@/styles"
 
 const Title = styled('h1', {
-  color: '$gray400',
+  color: '$green300',
   fontWeight: 'bold'
 })
 
