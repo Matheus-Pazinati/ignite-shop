@@ -1,12 +1,33 @@
-import { styled } from "@/styles"
-
-const Title = styled('h1', {
-  color: '$green300',
-  fontWeight: 'bold'
-})
+import Image from 'next/image'
+import camiseta1 from '../assets/camisetas/1.png'
+import camiseta2 from '../assets/camisetas/2.png'
+import camiseta3 from '../assets/camisetas/3.png'
 
 export default function Home() {
   return (
-    <Title>Ignite Shop</Title>
+    <main>
+      <div>
+        <Image src={camiseta1} width={520} height={480} alt="" />
+        <footer>
+          <strong>
+            Camiseta Beyond the Limits
+          </strong>
+          <span>
+            R$ 79,90
+          </span>
+        </footer>
+      </div>
+      <div>
+        <Image src={camiseta2} width={520} height={480} alt="" />
+        <footer>
+          <strong>
+            Camiseta Beyond the Limits
+          </strong>
+          <span>
+            R$ 79,90
+          </span>
+        </footer>
+      </div>
+    </main>
   )
 }
