@@ -3,11 +3,9 @@ import { styled } from "..";
 export const HomeContainer = styled('main', {
   display: 'flex',
   alignItems: 'center',
-  gap: '3rem',
   width: '100%',
   maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
   marginLeft: 'auto',
-  minHeight: '656px',
 })
 
 export const ProductCard = styled('a', {
@@ -15,15 +13,11 @@ export const ProductCard = styled('a', {
   background: 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
   boxShadow: '0px 0px 48px rgba(0, 0, 0, 0.9)',
   cursor: 'pointer',
-  position: 'relative',
   height: '100%',
-  padding: '0.25rem',
-  minHeight: '656px',
 
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  overflowY: 'hidden',
 
   img: {
     objectFit: 'cover'
