@@ -1,4 +1,5 @@
 import { styled } from "..";
+import Link from 'next/link'
 
 export const HomeContainer = styled('main', {
   display: 'flex',
@@ -8,7 +9,7 @@ export const HomeContainer = styled('main', {
   marginLeft: 'auto',
 })
 
-export const ProductCard = styled('a', {
+export const ProductCard = styled(Link, {
   borderRadius: '8px',
   background: 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
   boxShadow: '0px 0px 48px rgba(0, 0, 0, 0.9)',
