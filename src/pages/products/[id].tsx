@@ -11,6 +11,7 @@ interface ProductProps {
     imageUrl: string;
     description: string;
     price: string;
+    priceID: string;
   }
 }
 
@@ -63,7 +64,8 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ para
         price: new Intl.NumberFormat('pt-BR', {
           style: 'currency',
           currency: 'BRL'
-        }).format(productPrice.unit_amount! / 100)
+        }).format(productPrice.unit_amount! / 100),
+        priceId: productPrice.id
       }
     }
   }
