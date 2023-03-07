@@ -1,22 +1,35 @@
 import { stripe } from "../../lib/stripe"
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function stripeCheckout(req: NextApiRequest ,res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
-  const checkoutPriceId = 'price_1MfIO4BgzgjUY7rNr1dWaI7X'
+  const { checkoutPriceId } = req.body;
+
+  if (req.method !== "POST") {
+    return res.status(405).json({
+      error: 'Method not allowed'
+    })
+  }
+
+  if (!checkoutPriceId) {
+    return res.status(400).json({
+      error: 'Invalid product-price ID'
+    })
+  }
+
   const successUrl = `${process.env.BASE_URL}/success`
   const cancelUrl = `${process.env.BASE_URL}/`
 
   const checkoutSession = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        price: checkoutPriceId,
-        quantity: 1
-      }
-    ],
     success_url: successUrl,
     cancel_url: cancelUrl,
     mode: 'payment',
+    line_items: [
+      {
+        price: checkoutPriceId,
+        quantity: 1,
+      }
+    ],
   })
 
   return res.status(201).json({
