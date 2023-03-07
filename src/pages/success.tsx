@@ -1,12 +1,14 @@
+import { ImageContainer, LinkButton, SuccessContainer } from "../styles/pages/success";
+
 export default function Success() {
   return (
-    <main>
+    <SuccessContainer>
       <h1>Compra efetuada</h1>
-      <div>
+      <ImageContainer>
         <p>Imagem Camiseta</p>
-      </div>
+      </ImageContainer>
       <p>Uhuul <strong>Matheus</strong>, sua <strong>Camiseta Beyond the Limits</strong> já está a caminho da sua casa. </p>
-      <a href="">Voltar ao catálogo</a>
-    </main>
+      <LinkButton href="/">Voltar ao catálogo</LinkButton>
+    </SuccessContainer>
   )
 }
