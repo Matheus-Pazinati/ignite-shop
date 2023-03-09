@@ -16,6 +16,8 @@ export const LinkButton = styled(Link, {
   textDecoration: 'none',
   marginBottom: '0.5rem',
   color: '$green500',
+  maxWidth: '150px',
+  fontWeight: 'bold',
 
   '&:hover': {
     color: '$green300',

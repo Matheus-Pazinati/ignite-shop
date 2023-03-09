@@ -49,7 +49,7 @@ export default function Product({ product }: ProductProps) {
       <ProductContainer>
         <div>
           <LinkButton href={"/"}>
-            <CaretLeft size={17} />
+            <CaretLeft size={17} weight={'bold'} />
             Voltar ao catálogo
           </LinkButton>
           <ImageContainer>
