@@ -49,5 +49,9 @@ export const LinkButton = styled(Link, {
   color: '$green500',
   fontSize: '$md',
   fontWeight: 'bold',
-  marginTop: '5.5rem'
+  marginTop: '5.5rem',
+
+  '&:hover': {
+    color: '$green300',
+  }
 })

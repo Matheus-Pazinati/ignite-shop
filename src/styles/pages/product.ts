@@ -1,4 +1,5 @@
 import { styled } from '..'
+import Link from 'next/link';
 
 export const ProductContainer = styled('main', {
   display: 'grid',
@@ -7,6 +8,18 @@ export const ProductContainer = styled('main', {
   gap: '4.5rem',
   maxWidth: '1180px',
   margin: '0 auto'
+})
+
+export const LinkButton = styled(Link, {
+  display: 'flex',
+  alignItems: 'center',
+  textDecoration: 'none',
+  marginBottom: '0.5rem',
+  color: '$green500',
+
+  '&:hover': {
+    color: '$green300',
+  }
 })
 
 export const ImageContainer = styled('div', {
@@ -37,7 +50,7 @@ export const ProductDetails = styled('div', {
     lineHeight: '140%',
     fontWeight: 'bold',
     color: '$gray300',
-    margin: '1rem 0'
+    margin: '2rem 0 1rem'
   },
 
   span: {

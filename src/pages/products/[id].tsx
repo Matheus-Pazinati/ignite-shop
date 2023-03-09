@@ -1,11 +1,13 @@
 import Stripe from 'stripe';
 import { stripe } from '../../lib/stripe'
 import { GetStaticPaths, GetStaticProps } from "next";
-import { ProductContainer, ImageContainer, ProductDetails } from "../../styles/pages/product";
+import { ProductContainer, ImageContainer, ProductDetails, LinkButton } from "../../styles/pages/product";
 import Image from 'next/image';
 import axios from 'axios';
 import { useState } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
+import { CaretLeft } from 'phosphor-react';
 
 interface ProductProps {
   product: {
@@ -45,9 +47,15 @@ export default function Product({ product }: ProductProps) {
         <title>{product.name}</title>
       </Head>
       <ProductContainer>
-        <ImageContainer>
-          <Image src={product.imageUrl} alt="" width={520} height={480} />
-        </ImageContainer>
+        <div>
+          <LinkButton href={"/"}>
+            <CaretLeft size={17} />
+            Voltar ao catálogo
+          </LinkButton>
+          <ImageContainer>
+            <Image src={product.imageUrl} alt="" width={520} height={480} />
+          </ImageContainer>
+        </div>
         <ProductDetails>
           <div>
             <h1>{product.name}</h1>
