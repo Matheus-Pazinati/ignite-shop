@@ -24,38 +24,51 @@ export const ProductCard = styled(Link, {
     objectFit: 'cover'
   },
 
-  footer: {
-    padding: '2rem',
-    background: 'rgba(0, 0, 0, 0.6)',
-    borderRadius: '6px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    position: 'absolute',
-    left: '0.25rem',
-    bottom: '0.25rem',
-    right: '0.25rem',
-    transition: 'all 0.2s ease-in-out',
-    transform: 'translateY(110%)',
-    opacity: 0,
-
-    strong: {
-      fontSize: 'lg',
-      color: '$gray100',
-      fontWeight: '700'
-    },
-
-    span: {
-      fontSize: 'xl',
-      color: '$green300',
-      fontWeight: '700'
-    }
-  },
-
   '&:hover': {
     footer: {
       transform: 'translateY(0%)',
       opacity: 1,
     }
   }
+})
+
+export const FooterContainer = styled('footer', {
+  padding: '1.125rem',
+  background: 'rgba(32, 32, 36, 0.9)',
+  borderRadius: '6px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  position: 'absolute',
+  left: '0.25rem',
+  bottom: '0.25rem',
+  right: '0.25rem',
+  transition: 'all 0.2s ease-in-out',
+  transform: 'translateY(110%)',
+  opacity: 0,
+
+  '& .FooterDetails': {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '4px'
+  },
+
+  strong: {
+    fontSize: 'lg',
+    color: '$gray100',
+    fontWeight: '700'
+  },
+
+  span: {
+    fontSize: 'xl',
+    color: '$green300',
+    fontWeight: '700'
+  },
+
+  '& .BagIcon': {
+    padding: '0.625rem 0.75rem',
+    borderRadius: '6px',
+    border: 'none',
+    backgroundColor: '$green500',
+  },
 })
