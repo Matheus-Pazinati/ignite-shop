@@ -61,6 +61,16 @@ export default function Product({ product }: ProductProps) {
             <h1>{product.name}</h1>
             <span>{product.price}</span>
             <p>{product.description}</p>
+            <div>
+              <label htmlFor="ProductQuantity">Quantidade:</label>
+              <select name="ProductQuantity" id="ProductQuantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
           </div>
           <button 
             onClick={handleCreatePurchaseProcess} 
