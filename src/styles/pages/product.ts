@@ -87,5 +87,31 @@ export const ProductDetails = styled('div', {
     '&:not(:disabled):hover': {
       backgroundColor: '$green300',
     }
+  },
+
+  '& .ProductQuantityContainer': {
+    marginTop: '1rem',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    label: {
+      fontSize: '$md',
+      fontWeight: 'bold',
+      color: '$green500'
+    },
+    select: {
+      padding: '0.15rem 0.15rem 0.15rem 0.5rem',
+      borderRadius: '4px',
+      outline: 'none',
+      cursor: 'pointer',
+      border: '2px solid #00875F',
+      fontSize: '15px',
+      background: 'transparent',
+      color: '#FFF',
+
+      option: {
+        background: '$gray900',
+      }
+    }
   }
 })

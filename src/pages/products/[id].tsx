@@ -6,7 +6,6 @@ import Image from 'next/image';
 import axios from 'axios';
 import { useState } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 import { CaretLeft } from 'phosphor-react';
 
 interface ProductProps {
@@ -61,7 +60,7 @@ export default function Product({ product }: ProductProps) {
             <h1>{product.name}</h1>
             <span>{product.price}</span>
             <p>{product.description}</p>
-            <div>
+            <div className='ProductQuantityContainer'>
               <label htmlFor="ProductQuantity">Quantidade:</label>
               <select name="ProductQuantity" id="ProductQuantity">
                 <option value="1">1</option>
@@ -76,7 +75,7 @@ export default function Product({ product }: ProductProps) {
             onClick={handleCreatePurchaseProcess} 
             disabled={isCreatingCheckoutSession}
           >
-            Comprar agora
+            Colocar na sacola
           </button>
         </ProductDetails>
       </ProductContainer>
