@@ -62,6 +62,13 @@ export const CartProducts = styled('section', {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
+      flex: '1',
+
+      '& .ProductTitle': {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+      },
 
       p: {
         fontSize: '$md',
@@ -76,17 +83,39 @@ export const CartProducts = styled('section', {
       },
 
       button: {
-        textAlign: 'left',
         background: 'transparent',
         border: 'none',
         fontSize: '1rem',
         color: '$green500',
-        fontWeight: 'bold',
         cursor: 'pointer',
-        marginBotton: '0.25rem',
 
         '&:hover': {
           color: '$green300',
+        }
+      },
+
+      '& .ProductQuantityContainer': {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.5rem',
+        label: {
+          fontSize: '1rem',
+          fontWeight: 'bold',
+          color: '$green500'
+        },
+        select: {
+          padding: '0.05rem',
+          borderRadius: '4px',
+          outline: 'none',
+          cursor: 'pointer',
+          border: '2px solid #00875F',
+          fontSize: '14px',
+          background: 'transparent',
+          color: '#FFF',
+    
+          option: {
+            background: '$gray900',
+          }
         }
       }
     }

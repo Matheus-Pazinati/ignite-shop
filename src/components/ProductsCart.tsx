@@ -1,6 +1,6 @@
 import { CartContainer, CartDetails, CartProducts } from '../styles/components/cart';
 import * as Dialog from '@radix-ui/react-dialog';
-import { X } from 'phosphor-react'
+import { Trash, X } from 'phosphor-react'
 
 export function ProductsCart() {
   return (
@@ -20,10 +20,24 @@ export function ProductsCart() {
               </div>
               <div className='ProductDetails'>
                 <div>
-                  <p>Camiseta Explorer</p>
+                  <div className='ProductTitle'>
+                    <p>Camiseta Explorer</p>
+                    <button>
+                      <Trash size={22} weight={'bold'} />
+                    </button>
+                  </div>
                   <span>R$ 79,90</span>
                 </div>
-                <button>Remover</button>
+                <div className='ProductQuantityContainer'>
+                  <label htmlFor="ProductQuantity">Quantidade:</label>
+                  <select name="ProductQuantity" id="ProductQuantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
               </div>
             </div>
             <div className='ProductContainer'>
@@ -32,10 +46,24 @@ export function ProductsCart() {
               </div>
               <div className='ProductDetails'>
                 <div>
-                  <p>Camiseta Explorer</p>
+                  <div className='ProductTitle'>
+                    <p>Camiseta Explorer</p>
+                    <button>
+                      <Trash size={22} weight={'bold'} />
+                    </button>
+                  </div>
                   <span>R$ 79,90</span>
                 </div>
-                <button>Remover</button>
+                <div className='ProductQuantityContainer'>
+                  <label htmlFor="ProductQuantity">Quantidade:</label>
+                  <select name="ProductQuantity" id="ProductQuantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
               </div>
             </div>
           </CartProducts>
