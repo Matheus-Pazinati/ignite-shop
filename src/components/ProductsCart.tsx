@@ -38,6 +38,17 @@ export function ProductsCart() {
             </div>
           </div>
         </CartProducts>
+        <section>
+          <div>
+            <p>Quantidade</p>
+            <span>3 itens</span>
+          </div>
+          <div>
+            <p>Valor Total</p>
+            <span>R$ 270,00</span>
+          </div>
+          <button>Finalizar compra</button>
+        </section>
       </CartContainer>
     </Dialog.Portal>
   )
