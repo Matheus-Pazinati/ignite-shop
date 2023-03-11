@@ -7,13 +7,13 @@ import { ImageContainer, LinkButton, SuccessContainer } from "../styles/pages/su
 
 interface SuccessProps {
   customer: string;
-  product: {
-    name: string;
-    imageUrl: string;
-  }
+  products: {
+    id: string
+    images: string[]
+  }[];
 }
 
-export default function Success({ customer, product }: SuccessProps) {
+export default function Success({ customer, products }: SuccessProps) {
   return (
     <>
       <Head>
@@ -22,10 +22,16 @@ export default function Success({ customer, product }: SuccessProps) {
       </Head>
       <SuccessContainer>
         <h1>Compra efetuada</h1>
-        <ImageContainer>
-          <Image src={product.imageUrl} width={120} height={110} alt="" />
-        </ImageContainer>
-        <p>Uhuul <strong>{customer}</strong>, a <strong>{product.name}</strong> já está a caminho da sua casa. </p>
+        <div className="ProductsImagesContainer">
+          {products.map((product) => {
+            return (
+              <ImageContainer key={product.id}>
+                <Image src={product.images[0]} width={120} height={110} alt="" />
+              </ImageContainer>
+            )
+          })}
+        </div>
+        <p>Uhuul <strong>{customer}</strong>, sua compra de {products.length} camisetas já está a caminho da sua casa. </p>
         <LinkButton href="/">Voltar ao catálogo</LinkButton>
       </SuccessContainer>
     </>
@@ -48,16 +54,16 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     expand: ['line_items', 'line_items.data.price.product']
   })
 
+  const productsDetails= session.line_items?.data.map((product) => {
+    return product.price?.product
+  })
+
   const customer = session.customer_details?.name
-  const productDetails = session.line_items?.data[0].price?.product as Stripe.Product
   
   return {
     props: {
       customer,
-      product: {
-        name: productDetails.name,
-        imageUrl: productDetails.images[0]
-      }
+      products: productsDetails
     }
   }
 }

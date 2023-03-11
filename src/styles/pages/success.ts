@@ -16,6 +16,13 @@ export const SuccessContainer = styled('main', {
     color: '$gray100'
   },
 
+  '& .ProductsImagesContainer': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1,
+  },
+
   p: {
     fontSize: '$xl',
     color: '$gray300',
@@ -29,15 +36,21 @@ export const SuccessContainer = styled('main', {
 })
 
 export const ImageContainer = styled('div', {
-  width: '127px',
-  height: '145px',
-  borderRadius: '8px',
+  width: '140px',
+  height: '140px',
+  borderRadius: '1000px',
   background: 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
   margin: '4rem 0 2rem',
+  boxShadow: '0px 0px 60px rgba(0, 0, 0, 0.8)',
+
 
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+
+  '&:not(:last-child)': {
+    marginRight: '-52px',
+  },
 
   img: {
     objectFit: 'cover'

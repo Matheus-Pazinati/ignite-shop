@@ -28,6 +28,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       {
         price: checkoutPriceId,
         quantity: 1,
+      },
+      {
+        price: checkoutPriceId,
+        quantity: 1,
+      },
+      {
+        price: checkoutPriceId,
+        quantity: 1,
       }
     ],
   })
