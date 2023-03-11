@@ -7,8 +7,15 @@ export const CartContainer = styled(Dialog.Content, {
   right: '0',
   width: '480px',
   background: '$gray800',
-  padding: '4rem 3rem 3rem',
+  padding: '2rem 3rem 3rem',
   height: '100%',
+
+  '& .CartContent': {
+    display: 'flex',
+    height: '100%',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
 
   '& .CartTitle': {
     fontSize: '$lg',
@@ -82,6 +89,60 @@ export const CartProducts = styled('section', {
           color: '$green300',
         }
       }
+    }
+  }
+})
+
+export const CartDetails = styled('section', {
+  display: 'flex',
+  flexDirection: 'column',
+
+  div: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+
+  '& .DetailsQuantity': {
+    marginBottom: '0.5rem',
+    p: {
+      fontSize: '1rem',
+      color: '$gray100'
+    },
+
+    span: {
+      fontSize: '$md',
+      color: '$gray300'
+    }
+  },
+
+  '& .DetailsPrice': {
+    p: {
+      fontSize: '$md',
+      color: '$gray100',
+      fontWeight: 'bold'
+    },
+
+    span: {
+      fontSize: '$xl',
+      color: '$gray100',
+      fontWeight: 'bold'
+    }
+  },
+
+  button: {
+    padding: '1.25rem',
+    fontSize: '$md',
+    color: '#FFF',
+    fontWeight: 'bold',
+    background: '$green500',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    border: 'none',
+    marginTop: '2.5rem',
+
+    '&:hover' : {
+      background: '$green300',
     }
   }
 })
