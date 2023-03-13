@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { ProductContainer, ImageContainer, ProductDetails, LinkButton } from "../../styles/pages/product";
 import Image from 'next/image';
 import axios from 'axios';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import Head from 'next/head';
 import { CaretLeft } from 'phosphor-react';
 
@@ -21,25 +21,31 @@ interface ProductProps {
 
 export default function Product({ product }: ProductProps) {
 
-  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
+  const [productQuantity, setProductQuantity] = useState(1)
 
-  async function handleCreatePurchaseProcess() {
-    try {
-      setIsCreatingCheckoutSession(true)
-      const response = await axios.post('/api/checkout', {
-        checkoutPriceId: product.priceId
-      })
-
-      const { checkoutUrl } = response.data
-
-      window.location.href = checkoutUrl
-
-    } catch (error) {
-      console.log('Ocorreu um erro no processo de Checkout')
-      setIsCreatingCheckoutSession(false)
-    }
-
+  function handleProductQuantity(event: ChangeEvent<HTMLSelectElement>) {
+    setProductQuantity(Number(event.target.value))
   }
+
+  // const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
+
+  // async function handleCreatePurchaseProcess() {
+  //   try {
+  //     setIsCreatingCheckoutSession(true)
+  //     const response = await axios.post('/api/checkout', {
+  //       checkoutPriceId: product.priceId
+  //     })
+
+  //     const { checkoutUrl } = response.data
+
+  //     window.location.href = checkoutUrl
+
+  //   } catch (error) {
+  //     console.log('Ocorreu um erro no processo de Checkout')
+  //     setIsCreatingCheckoutSession(false)
+  //   }
+  // }
+
   return (
     <>
       <Head>
@@ -62,7 +68,12 @@ export default function Product({ product }: ProductProps) {
             <p>{product.description}</p>
             <div className='ProductQuantityContainer'>
               <label htmlFor="ProductQuantity">Quantidade:</label>
-              <select name="ProductQuantity" id="ProductQuantity">
+              <select
+               name="ProductQuantity" 
+               id="ProductQuantity" 
+               value={productQuantity}
+               onChange={handleProductQuantity}
+              >
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -71,10 +82,7 @@ export default function Product({ product }: ProductProps) {
               </select>
             </div>
           </div>
-          <button 
-            onClick={handleCreatePurchaseProcess} 
-            disabled={isCreatingCheckoutSession}
-          >
+          <button>
             Colocar na sacola
           </button>
         </ProductDetails>
