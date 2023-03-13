@@ -3,7 +3,6 @@ import { stripe } from '../../lib/stripe'
 import { GetStaticPaths, GetStaticProps } from "next";
 import { ProductContainer, ImageContainer, ProductDetails, LinkButton } from "../../styles/pages/product";
 import Image from 'next/image';
-import axios from 'axios';
 import { ChangeEvent, useState } from 'react';
 import Head from 'next/head';
 import { CaretLeft } from 'phosphor-react';

@@ -8,7 +8,6 @@ import logoImg from '../assets/logo.svg'
 import { Handbag } from 'phosphor-react'
 
 export function DefaultHeader() {
-  const teste = true
   return (
     <Header>
       <Image src={logoImg} alt="" />
