@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { ChangeEvent, useContext, useState } from 'react';
 import Head from 'next/head';
 import { CaretLeft } from 'phosphor-react';
-import { CartProductsContext } from '@/context/CartProductsContext';
+import { BagProductsContext } from '../../context/BagProductsContext';
 
 interface ProductProps {
   product: {
@@ -21,9 +21,7 @@ interface ProductProps {
 
 export default function Product({ product }: ProductProps) {
 
-  const { cartProducts } = useContext(CartProductsContext)
-
-  console.log(cartProducts)
+  const {} = useContext(BagProductsContext)
 
   const [productQuantity, setProductQuantity] = useState(1)
 

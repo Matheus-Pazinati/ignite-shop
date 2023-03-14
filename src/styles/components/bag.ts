@@ -1,7 +1,7 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { styled } from '..';
 
-export const CartContainer = styled(Dialog.Content, {
+export const BagContainer = styled(Dialog.Content, {
   position: 'fixed',
   top: '0',
   right: '0',
@@ -10,19 +10,19 @@ export const CartContainer = styled(Dialog.Content, {
   padding: '2rem 3rem 3rem',
   height: '100%',
 
-  '& .CartContent': {
+  '& .BagContent': {
     display: 'flex',
     height: '100%',
     flexDirection: 'column',
     justifyContent: 'space-between'
   },
 
-  '& .CartTitle': {
+  '& .BagTitle': {
     fontSize: '$lg',
     fontWeight: 'bold'
   },
 
-  '& .CartCloseButton': {
+  '& .BagCloseButton': {
     position: 'absolute',
     top: '1.5rem',
     right: '1.5rem',
@@ -32,7 +32,7 @@ export const CartContainer = styled(Dialog.Content, {
   }
 })
 
-export const CartProducts = styled('section', {
+export const BagProducts = styled('section', {
   maxWidth: '384px',
   marginTop: '2rem',
   display: 'flex',
@@ -122,7 +122,7 @@ export const CartProducts = styled('section', {
   }
 })
 
-export const CartDetails = styled('section', {
+export const BagDetails = styled('section', {
   display: 'flex',
   flexDirection: 'column',
 

@@ -1,27 +1,27 @@
-import { CartContainer, CartDetails, CartProducts } from '../styles/components/cart';
+import { BagContainer, BagDetails, BagProducts } from '../styles/components/bag';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Trash, X } from 'phosphor-react'
 import { useContext } from 'react';
-import { CartProductsContext } from '@/context/CartProductsContext';
-import { EmptyBag } from './EmptyCart';
+import { BagProductsContext } from '@/context/BagProductsContext';
+import { EmptyBag } from './EmptyBag';
 
-export function ProductsCart() {
-  const { cartProducts } = useContext(CartProductsContext)
+export function ProductsBag() {
+  const { bagProducts } = useContext(BagProductsContext)
 
-  const hasProductsOnBag = cartProducts.length > 0
+  const hasProductsOnBag = bagProducts.length > 0
 
   return (
     <Dialog.Portal>
-      <CartContainer>
-        <Dialog.Title className='CartTitle'>
+      <BagContainer>
+        <Dialog.Title className='BagTitle'>
           Sacola de compras
         </Dialog.Title>
-        <Dialog.Close className='CartCloseButton'>
+        <Dialog.Close className='BagCloseButton'>
           <X size={24} color={"#8D8D99"} />
         </Dialog.Close>
         {hasProductsOnBag ? 
-          <div className='CartContent'>
-            <CartProducts>
+          <div className='BagContent'>
+            <BagProducts>
               <div className='ProductContainer'>
                 <div className='ProductImage'>
                   <span>Imagem</span>
@@ -48,8 +48,8 @@ export function ProductsCart() {
                   </div>
                 </div>
               </div>
-            </CartProducts>
-            <CartDetails>
+            </BagProducts>
+            <BagDetails>
               <div className='DetailsQuantity'>
                 <p>Quantidade</p>
                 <span>3 itens</span>
@@ -59,12 +59,12 @@ export function ProductsCart() {
                 <span>R$ 270,00</span>
               </div>
               <button>Finalizar compra</button>
-            </CartDetails>
+            </BagDetails>
           </div> 
           : 
           <EmptyBag />
         }
-      </CartContainer>
+      </BagContainer>
     </Dialog.Portal>
   )
 }

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import * as Dialog from '@radix-ui/react-dialog';
 
-import { ProductsCart } from '../components/ProductsCart';
+import { ProductsBag } from '../components/ProductsBag';
 
 import { CartQuantityView, CartTrigger, Header } from '../styles/components/header'
 import logoImg from '../assets/logo.svg'
@@ -20,7 +20,7 @@ export function DefaultHeader() {
         <CartQuantityView view={'false'} >
           1
         </CartQuantityView>
-        <ProductsCart />
+        <ProductsBag />
       </Dialog.Root>
     </Header>
   )
