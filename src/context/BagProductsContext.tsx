@@ -1,3 +1,4 @@
+import { showToastify } from '@/utils/showToastify';
 import { createContext, ReactNode, useState } from 'react'
 
 export interface BagProductsProps {
@@ -39,11 +40,13 @@ export function BagProductsProvider({ children }: BagProductsProviderProps) {
         }
       })
       setBagProducts(newProductsList)
+      showToastify()
       return
     } else {
-      return setBagProducts(state => [...state, product])
+      setBagProducts(state => [...state, product])
+      showToastify()
+      return
     }
-
   }
 
   return (

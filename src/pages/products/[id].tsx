@@ -8,6 +8,8 @@ import Head from 'next/head';
 import { CaretLeft } from 'phosphor-react';
 import { BagProductsContext, BagProductsProps } from '../../context/BagProductsContext';
 import { transformNumberToCurrency } from '@/utils/transformNumberToCurrency';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ProductProps {
   product: {
@@ -102,6 +104,11 @@ export default function Product({ product }: ProductProps) {
           </button>
         </ProductDetails>
       </ProductContainer>
+      <ToastContainer
+        newestOnTop={false}
+        rtl={false}
+        pauseOnFocusLoss
+      />
     </>
   )
 }
