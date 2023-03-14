@@ -3,9 +3,10 @@ import { stripe } from '../../lib/stripe'
 import { GetStaticPaths, GetStaticProps } from "next";
 import { ProductContainer, ImageContainer, ProductDetails, LinkButton } from "../../styles/pages/product";
 import Image from 'next/image';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import Head from 'next/head';
 import { CaretLeft } from 'phosphor-react';
+import { CartProductsContext } from '@/context/CartProductsContext';
 
 interface ProductProps {
   product: {
@@ -19,6 +20,10 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
+
+  const { cartProducts } = useContext(CartProductsContext)
+
+  console.log(cartProducts)
 
   const [productQuantity, setProductQuantity] = useState(1)
 
