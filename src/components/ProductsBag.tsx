@@ -4,11 +4,15 @@ import { Trash, X } from 'phosphor-react'
 import { useContext } from 'react';
 import { BagProductsContext } from '@/context/BagProductsContext';
 import { EmptyBag } from './EmptyBag';
+import Image from 'next/image';
+import { transformNumberToCurrency } from '@/utils/transformNumberToCurrency';
 
 export function ProductsBag() {
   const { bagProducts } = useContext(BagProductsContext)
 
   const hasProductsOnBag = bagProducts.length > 0
+
+  console.log(bagProducts)
 
   return (
     <Dialog.Portal>
@@ -19,40 +23,42 @@ export function ProductsBag() {
         <Dialog.Close className='BagCloseButton'>
           <X size={24} color={"#8D8D99"} />
         </Dialog.Close>
-        {hasProductsOnBag ? 
-          <div className='BagContent'>
-            <BagProducts>
-              <div className='ProductContainer'>
-                <div className='ProductImage'>
-                  <span>Imagem</span>
-                </div>
-                <div className='ProductDetails'>
-                  <div>
-                    <div className='ProductTitle'>
-                      <p>Camiseta Explorer</p>
-                      <button>
-                        <Trash size={22} weight={'bold'} />
-                      </button>
+        <div className='BagContent'>
+          <BagProducts>
+            {hasProductsOnBag ?
+              bagProducts.map((product) => {
+                return (
+                  <div className='ProductContainer' key={product.id}>
+                    <div className='ProductImage'>
+                      <Image src={product.imageUrl} alt="" width={100} height={90} />
                     </div>
-                    <span>R$ 79,90</span>
+                    <div className='ProductDetails'>
+                      <div>
+                        <div className='ProductTitle'>
+                          <p>{product.name}</p>
+                          <button>
+                            <Trash size={22} weight={'bold'} />
+                          </button>
+                        </div>
+                        <span>{transformNumberToCurrency(product.price * product.quantity)}</span>
+                      </div>
+                      <div className='ProductQuantityContainer'>
+                        <p className='QuantityLabel'>Quantidade: </p>
+                        <span>{product.quantity}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className='ProductQuantityContainer'>
-                    <label htmlFor="ProductQuantity">Quantidade:</label>
-                    <select name="ProductQuantity" id="ProductQuantity">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </BagProducts>
+                )
+              })
+              :
+              <EmptyBag />
+            }
+          </BagProducts>
+          {hasProductsOnBag ?
             <BagDetails>
               <div className='DetailsQuantity'>
                 <p>Quantidade</p>
-                <span>3 itens</span>
+                <span>{bagProducts.length > 1 ? `${bagProducts.length} itens` : '1 item'}</span>
               </div>
               <div className='DetailsPrice'>
                 <p>Valor Total</p>
@@ -60,10 +66,10 @@ export function ProductsBag() {
               </div>
               <button>Finalizar compra</button>
             </BagDetails>
-          </div> 
-          : 
-          <EmptyBag />
-        }
+            :
+            ""
+          }
+        </div>
       </BagContainer>
     </Dialog.Portal>
   )

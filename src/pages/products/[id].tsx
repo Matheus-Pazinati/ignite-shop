@@ -6,7 +6,8 @@ import Image from 'next/image';
 import { ChangeEvent, useContext, useState } from 'react';
 import Head from 'next/head';
 import { CaretLeft } from 'phosphor-react';
-import { BagProductsContext } from '../../context/BagProductsContext';
+import { BagProductsContext, BagProductsProps } from '../../context/BagProductsContext';
+import { transformNumberToCurrency } from '@/utils/transformNumberToCurrency';
 
 interface ProductProps {
   product: {
@@ -14,19 +15,27 @@ interface ProductProps {
     name: string;
     imageUrl: string;
     description: string;
-    price: string;
+    price: number;
     priceId: string;
   }
 }
 
 export default function Product({ product }: ProductProps) {
 
-  const {} = useContext(BagProductsContext)
+  const { handleAddProductOnBag } = useContext(BagProductsContext)
 
   const [productQuantity, setProductQuantity] = useState(1)
 
   function handleProductQuantity(event: ChangeEvent<HTMLSelectElement>) {
     setProductQuantity(Number(event.target.value))
+  }
+
+  const productDetails: BagProductsProps = {
+    id: product.id,
+    name: product.name,
+    imageUrl: product.imageUrl,
+    price: product.price,
+    quantity: productQuantity
   }
 
   // const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
@@ -66,15 +75,15 @@ export default function Product({ product }: ProductProps) {
         <ProductDetails>
           <div>
             <h1>{product.name}</h1>
-            <span>{product.price}</span>
+            <span>{transformNumberToCurrency(product.price)}</span>
             <p>{product.description}</p>
             <div className='ProductQuantityContainer'>
               <label htmlFor="ProductQuantity">Quantidade:</label>
               <select
-               name="ProductQuantity" 
-               id="ProductQuantity" 
-               value={productQuantity}
-               onChange={handleProductQuantity}
+                name="ProductQuantity"
+                id="ProductQuantity"
+                value={productQuantity}
+                onChange={handleProductQuantity}
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -84,7 +93,11 @@ export default function Product({ product }: ProductProps) {
               </select>
             </div>
           </div>
-          <button>
+          <button
+            onClick={() => {
+              handleAddProductOnBag(productDetails)
+            }}
+          >
             Colocar na sacola
           </button>
         </ProductDetails>
@@ -123,10 +136,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ para
         imageUrl: response.images[0],
         description: response.description,
         priceId: productPrice!.id,
-        price: new Intl.NumberFormat('pt-BR', {
-          style: 'currency',
-          currency: 'BRL'
-        }).format(productPrice.unit_amount! / 100),
+        price: productPrice.unit_amount,
       }
     },
     revalidate: 60 * 60 * 1 // 1 hours

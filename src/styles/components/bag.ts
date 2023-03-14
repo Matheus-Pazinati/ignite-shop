@@ -66,7 +66,7 @@ export const BagProducts = styled('section', {
 
       '& .ProductTitle': {
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'space-between'
       },
 
@@ -98,24 +98,16 @@ export const BagProducts = styled('section', {
         display: 'flex',
         alignItems: 'center',
         gap: '0.5rem',
-        label: {
+        marginTop: '0.25rem',
+        '& .QuantityLabel': {
           fontSize: '1rem',
           fontWeight: 'bold',
-          color: '$green500'
+          color: '$green500',
+          margin: 0,
         },
-        select: {
-          padding: '0.05rem',
-          borderRadius: '4px',
-          outline: 'none',
-          cursor: 'pointer',
-          border: '2px solid #00875F',
-          fontSize: '14px',
-          background: 'transparent',
+        span: {
+          fontSize: '1rem',
           color: '#FFF',
-    
-          option: {
-            background: '$gray900',
-          }
         }
       }
     }
