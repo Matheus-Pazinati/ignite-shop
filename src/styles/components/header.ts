@@ -50,4 +50,15 @@ export const CartTrigger = styled(Dialog.Trigger, {
   border: 'none',
   backgroundColor: '$gray800',
   cursor: 'pointer',
+
+  variants: {
+    hasProducts: {
+      true: {
+        color: '$gray100'
+      },
+      false: {
+        color: '$gray500'
+      }
+    }
+  }
 })
