@@ -2,18 +2,18 @@ import { stripe } from "@/lib/stripe";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import Stripe from "stripe";
 import { ImageContainer, LinkButton, SuccessContainer } from "../styles/pages/success";
 
 interface SuccessProps {
   customer: string;
+  totalQuantityOfProducts: number;
   products: {
     id: string
     images: string[]
   }[];
 }
 
-export default function Success({ customer, products }: SuccessProps) {
+export default function Success({ customer, products, totalQuantityOfProducts }: SuccessProps) {
   return (
     <>
       <Head>
@@ -31,7 +31,7 @@ export default function Success({ customer, products }: SuccessProps) {
             )
           })}
         </div>
-        <p>Uhuul <strong>{customer}</strong>, sua compra de {products.length} camisetas já está a caminho da sua casa. </p>
+        <p>Uhuul <strong>{customer}</strong>, sua compra de {totalQuantityOfProducts} camisetas já está a caminho da sua casa. </p>
         <LinkButton href="/">Voltar ao catálogo</LinkButton>
       </SuccessContainer>
     </>
@@ -58,11 +58,16 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     return product.price?.product
   })
 
+  const totalQuantityOfProducts = session.line_items?.data.reduce((acc, product) => {
+    return acc + product.quantity!
+  }, 0)
+
   const customer = session.customer_details?.name
   
   return {
     props: {
       customer,
+      totalQuantityOfProducts,
       products: productsDetails
     }
   }
