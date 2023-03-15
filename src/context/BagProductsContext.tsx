@@ -12,6 +12,7 @@ export interface BagProductsProps {
 interface BagProductsContextTypes {
   bagProducts: BagProductsProps[]
   handleAddProductOnBag: (product: BagProductsProps) => void
+  handleDeleteProductFromBag: (id: string) => void
 }
 
 interface BagProductsProviderProps {
@@ -43,14 +44,21 @@ export function BagProductsProvider({ children }: BagProductsProviderProps) {
       showToastify()
       return
     } else {
-      setBagProducts(state => [...state, product])
-      showToastify()
+        setBagProducts(state => [...state, product])
+        showToastify()
       return
     }
   }
 
+  function handleDeleteProductFromBag(id: string) {
+    const newBagListWithoutDeletedOne = bagProducts.filter((product) => {
+      return product.id !== id
+    })
+    setBagProducts(newBagListWithoutDeletedOne)
+  }
+
   return (
-    <BagProductsContext.Provider value={{bagProducts, handleAddProductOnBag}} >
+    <BagProductsContext.Provider value={{bagProducts, handleAddProductOnBag, handleDeleteProductFromBag}} >
       {children}
     </BagProductsContext.Provider>
   )

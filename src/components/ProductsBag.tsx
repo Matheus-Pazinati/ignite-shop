@@ -12,7 +12,8 @@ export function ProductsBag() {
     bagProducts, 
     hasProductsOnBag, 
     totalNumberOfProductsInTheBag, 
-    totalValueOfProducts 
+    totalValueOfProducts,
+    deleteProductFromBag
   } = useProduct()
 
   return (
@@ -37,7 +38,9 @@ export function ProductsBag() {
                       <div>
                         <div className='ProductTitle'>
                           <p>{product.name}</p>
-                          <button>
+                          <button onClick={() => {
+                            deleteProductFromBag(product.id)
+                          }}>
                             <Trash size={22} weight={'bold'} />
                           </button>
                         </div>

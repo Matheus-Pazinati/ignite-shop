@@ -2,7 +2,7 @@ import { BagProductsContext } from "@/context/BagProductsContext";
 import { useContext } from "react";
 
 export function useProduct() {
-  const { bagProducts } = useContext(BagProductsContext)
+  const { bagProducts, handleDeleteProductFromBag } = useContext(BagProductsContext)
 
   return {
     bagProducts,
@@ -16,6 +16,9 @@ export function useProduct() {
       return bagProducts.reduce((acc, product) => {
         return acc + product.quantity
       }, 0)
+    },
+    deleteProductFromBag: (id: string) => {
+      handleDeleteProductFromBag(id)
     }
   }
 }
