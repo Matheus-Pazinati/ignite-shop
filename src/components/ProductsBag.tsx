@@ -1,18 +1,19 @@
 import { BagContainer, BagDetails, BagProducts } from '../styles/components/bag';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Trash, X } from 'phosphor-react'
-import { useContext } from 'react';
-import { BagProductsContext } from '@/context/BagProductsContext';
 import { EmptyBag } from './EmptyBag';
 import Image from 'next/image';
 import { transformNumberToCurrency } from '@/utils/transformNumberToCurrency';
+import { useProduct } from '@/hooks/useProduct';
 
 export function ProductsBag() {
-  const { bagProducts } = useContext(BagProductsContext)
 
-  const hasProductsOnBag = bagProducts.length > 0
-
-  console.log(bagProducts)
+  const { 
+    bagProducts, 
+    hasProductsOnBag, 
+    totalNumberOfProductsInTheBag, 
+    totalValueOfProducts 
+  } = useProduct()
 
   return (
     <Dialog.Portal>
@@ -58,11 +59,11 @@ export function ProductsBag() {
             <BagDetails>
               <div className='DetailsQuantity'>
                 <p>Quantidade</p>
-                <span>{bagProducts.length > 1 ? `${bagProducts.length} itens` : '1 item'}</span>
+                <span>{totalNumberOfProductsInTheBag() > 1 ? `${totalNumberOfProductsInTheBag()} itens` : '1 item'}</span>
               </div>
               <div className='DetailsPrice'>
                 <p>Valor Total</p>
-                <span>R$ 270,00</span>
+                <span>{transformNumberToCurrency(totalValueOfProducts())}</span>
               </div>
               <button>Finalizar compra</button>
             </BagDetails>
