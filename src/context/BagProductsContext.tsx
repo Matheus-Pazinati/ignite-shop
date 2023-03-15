@@ -7,6 +7,7 @@ export interface BagProductsProps {
   imageUrl: string;
   price: number;
   quantity: number;
+  priceId: string;
 }
 
 interface BagProductsContextTypes {

@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
-  const { checkoutPriceId } = req.body;
+  const checkoutData = JSON.parse(req.body.checkoutData)
 
   if (req.method !== "POST") {
     return res.status(405).json({
@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     })
   }
 
-  if (!checkoutPriceId) {
+  if (!checkoutData) {
     return res.status(400).json({
       error: 'Invalid product-price ID'
     })
@@ -24,20 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     success_url: successUrl,
     cancel_url: cancelUrl,
     mode: 'payment',
-    line_items: [
-      {
-        price: checkoutPriceId,
-        quantity: 1,
-      },
-      {
-        price: checkoutPriceId,
-        quantity: 1,
-      },
-      {
-        price: checkoutPriceId,
-        quantity: 1,
-      }
-    ],
+    line_items: checkoutData
   })
 
   return res.status(201).json({

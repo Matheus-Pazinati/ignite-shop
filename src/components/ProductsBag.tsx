@@ -5,6 +5,8 @@ import { EmptyBag } from './EmptyBag';
 import Image from 'next/image';
 import { transformNumberToCurrency } from '@/utils/transformNumberToCurrency';
 import { useProduct } from '@/hooks/useProduct';
+import axios from 'axios';
+import { useState } from 'react';
 
 export function ProductsBag() {
 
@@ -15,6 +17,33 @@ export function ProductsBag() {
     totalValueOfProducts,
     deleteProductFromBag
   } = useProduct()
+
+  const checkoutSessionData = bagProducts.map((product) => {
+    return {
+      price: product.priceId,
+      quantity: product.quantity
+    }
+  })
+
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
+
+  async function handleCreatePurchaseProcess() {
+    try {
+      setIsCreatingCheckoutSession(true)
+      console.log(checkoutSessionData)
+      const response = await axios.post('/api/checkout', {
+        checkoutData: JSON.stringify(checkoutSessionData)
+      })
+
+      const { checkoutUrl } = response.data
+
+      window.location.href = checkoutUrl
+
+    } catch (error) {
+      console.log('Ocorreu um erro no processo de Checkout')
+      setIsCreatingCheckoutSession(false)
+    }
+  }
 
   return (
     <Dialog.Portal>
@@ -68,7 +97,12 @@ export function ProductsBag() {
                 <p>Valor Total</p>
                 <span>{transformNumberToCurrency(totalValueOfProducts())}</span>
               </div>
-              <button>Finalizar compra</button>
+              <button 
+              disabled={isCreatingCheckoutSession}
+              onClick={handleCreatePurchaseProcess}
+              >
+                Finalizar compra
+              </button>
             </BagDetails>
             :
             ""

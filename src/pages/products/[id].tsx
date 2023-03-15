@@ -37,27 +37,9 @@ export default function Product({ product }: ProductProps) {
     name: product.name,
     imageUrl: product.imageUrl,
     price: product.price,
-    quantity: productQuantity
+    quantity: productQuantity,
+    priceId: product.priceId
   }
-
-  // const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
-
-  // async function handleCreatePurchaseProcess() {
-  //   try {
-  //     setIsCreatingCheckoutSession(true)
-  //     const response = await axios.post('/api/checkout', {
-  //       checkoutPriceId: product.priceId
-  //     })
-
-  //     const { checkoutUrl } = response.data
-
-  //     window.location.href = checkoutUrl
-
-  //   } catch (error) {
-  //     console.log('Ocorreu um erro no processo de Checkout')
-  //     setIsCreatingCheckoutSession(false)
-  //   }
-  // }
 
   return (
     <>
