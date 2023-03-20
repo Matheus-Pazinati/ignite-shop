@@ -33,18 +33,18 @@ export default function Product({ product }: ProductProps) {
   }
 
   const productDetails: BagProductsProps = {
-    id: product?.id,
-    name: product?.name,
-    imageUrl: product?.imageUrl,
-    price: product?.price,
+    id: product.id,
+    name: product.name,
+    imageUrl: product.imageUrl,
+    price: product.price,
     quantity: productQuantity,
-    priceId: product?.priceId
+    priceId: product.priceId
   }
 
   return (
     <>
       <Head>
-        <title>{product?.name}</title>
+        <title>{product.name}</title>
       </Head>
       <ProductContainer>
         <div>
@@ -53,14 +53,14 @@ export default function Product({ product }: ProductProps) {
             Voltar ao catálogo
           </LinkButton>
           <ImageContainer>
-            <Image src={product?.imageUrl} alt="" width={520} height={480} />
+            <Image src={product.imageUrl} alt="" width={520} height={480} />
           </ImageContainer>
         </div>
         <ProductDetails>
           <div>
-            <h1>{product?.name}</h1>
-            <span>{transformNumberToCurrency(product?.price)}</span>
-            <p>{product?.description}</p>
+            <h1>{product.name}</h1>
+            <span>{transformNumberToCurrency(product.price)}</span>
+            <p>{product.description}</p>
             <div className='ProductQuantityContainer'>
               <label htmlFor="ProductQuantity">Quantidade:</label>
               <select
@@ -105,13 +105,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
         params: { id: 'prod_NQ8fNzDhcaBRqo' }
       }
     ],
-    fallback: 'blocking'
+    fallback: 'blocking',
   }
 }
 
 export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ params }) => {
 
-  const productId = params!.id
+  const productId = params!?.id
   const response = await stripe.products.retrieve(productId, {
     expand: ['default_price']
   });
@@ -125,7 +125,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ para
         name: response.name,
         imageUrl: response.images[0],
         description: response.description,
-        priceId: productPrice!.id,
+        priceId: productPrice.id,
         price: productPrice.unit_amount,
       }
     },
