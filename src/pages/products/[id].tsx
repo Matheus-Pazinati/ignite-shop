@@ -10,6 +10,7 @@ import { BagProductsContext, BagProductsProps } from '../../context/BagProductsC
 import { transformNumberToCurrency } from '@/utils/transformNumberToCurrency';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/router';
 
 interface ProductProps {
   product: {
@@ -111,7 +112,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ params }) => {
 
-  const productId = params!?.id
+  const productId = params?.id as string
   const response = await stripe.products.retrieve(productId, {
     expand: ['default_price']
   });
