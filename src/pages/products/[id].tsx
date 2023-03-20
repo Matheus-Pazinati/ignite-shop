@@ -33,12 +33,12 @@ export default function Product({ product }: ProductProps) {
   }
 
   const productDetails: BagProductsProps = {
-    id: product.id,
-    name: product.name,
-    imageUrl: product.imageUrl,
-    price: product.price,
+    id: product?.id,
+    name: product?.name,
+    imageUrl: product?.imageUrl,
+    price: product?.price,
     quantity: productQuantity,
-    priceId: product.priceId
+    priceId: product?.priceId
   }
 
   return (
@@ -110,6 +110,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ params }) => {
+
   const productId = params!.id
   const response = await stripe.products.retrieve(productId, {
     expand: ['default_price']
