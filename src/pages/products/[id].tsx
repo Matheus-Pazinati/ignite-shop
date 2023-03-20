@@ -44,7 +44,7 @@ export default function Product({ product }: ProductProps) {
   return (
     <>
       <Head>
-        <title>{product.name}</title>
+        <title>{product?.name}</title>
       </Head>
       <ProductContainer>
         <div>
@@ -53,14 +53,14 @@ export default function Product({ product }: ProductProps) {
             Voltar ao catálogo
           </LinkButton>
           <ImageContainer>
-            <Image src={product.imageUrl} alt="" width={520} height={480} />
+            <Image src={product?.imageUrl} alt="" width={520} height={480} />
           </ImageContainer>
         </div>
         <ProductDetails>
           <div>
-            <h1>{product.name}</h1>
-            <span>{transformNumberToCurrency(product.price)}</span>
-            <p>{product.description}</p>
+            <h1>{product?.name}</h1>
+            <span>{transformNumberToCurrency(product?.price)}</span>
+            <p>{product?.description}</p>
             <div className='ProductQuantityContainer'>
               <label htmlFor="ProductQuantity">Quantidade:</label>
               <select
