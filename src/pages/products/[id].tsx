@@ -1,16 +1,16 @@
 import Stripe from 'stripe';
-import { stripe } from '../../lib/stripe'
+import { stripe } from '@/lib/stripe'
 import { GetStaticPaths, GetStaticProps } from "next";
-import { ProductContainer, ImageContainer, ProductDetails, LinkButton } from "../../styles/pages/product";
+import { ProductContainer, ImageContainer, ProductDetails, LinkButton } from "@/styles/pages/product";
 import Image from 'next/image';
 import { ChangeEvent, useContext, useState } from 'react';
 import Head from 'next/head';
 import { CaretLeft } from 'phosphor-react';
-import { BagProductsContext, BagProductsProps } from '../../context/BagProductsContext';
+import { BagProductsContext, BagProductsProps } from '@/context/BagProductsContext';
 import { transformNumberToCurrency } from '@/utils/transformNumberToCurrency';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from 'next/router';
+
 
 interface ProductProps {
   product: {
@@ -29,10 +29,6 @@ export default function Product({ product }: ProductProps) {
 
   const [productQuantity, setProductQuantity] = useState(1)
 
-  function handleProductQuantity(event: ChangeEvent<HTMLSelectElement>) {
-    setProductQuantity(Number(event.target.value))
-  }
-
   const productDetails: BagProductsProps = {
     id: product.id,
     name: product.name,
@@ -40,6 +36,10 @@ export default function Product({ product }: ProductProps) {
     price: product.price,
     quantity: productQuantity,
     priceId: product.priceId
+  }
+
+  function handleProductQuantity(event: ChangeEvent<HTMLSelectElement>) {
+    setProductQuantity(Number(event.target.value))
   }
 
   return (
@@ -100,11 +100,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [
       {
-        params: { id: 'prod_NQ8g0SQfPx5Nl6' }
+        params: { id: 'prod_NQ8g0SQfPx5Nl6' },
       },
       {
-        params: { id: 'prod_NQ8fNzDhcaBRqo' }
-      }
+        params: { id: 'prod_NQ8fNzDhcaBRqo' },
+      },
     ],
     fallback: 'blocking',
   }
@@ -112,8 +112,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ params }) => {
 
-  const productId = params?.id as string
-  const response = await stripe.products.retrieve(productId, {
+  const productId = params?.id
+  const response = await stripe.products.retrieve(productId!, {
     expand: ['default_price']
   });
 
